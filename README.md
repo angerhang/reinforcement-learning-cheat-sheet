@@ -9,6 +9,7 @@ As part of my master thesis in reinforcement learning, I am gradually putting mo
 * TD
 * SARSA
 * On-policy vs off-policy
+* Model-based vs Model-free
 * Dynamic programming
 * DQN
 * Double DQN

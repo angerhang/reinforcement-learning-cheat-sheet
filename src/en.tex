@@ -9,6 +9,8 @@
 \usepackage{tikz}
 \usetikzlibrary{decorations.pathmorphing}
 \usepackage{amsmath,amssymb}
+\usepackage{pgfplots,caption}
+\usepackage{graphicx}
 
 \usepackage{colortbl}
 \usepackage{xcolor}
@@ -71,27 +73,45 @@
 		\begin{tikzpicture}
 		\node [mybox] (box){%
 			\begin{minipage}{0.3\textwidth}
-			In a Markov decision process, a game agent interacts with an environment to achieve a certain goal. The interaction happens at every discrete time $ t = 1, 2, 3, ... $. The agent observes certain state of the environment $ S_t \in \mathcal{S} $, it selects some action $ A_t \in \mathcal{A} $ and then receive certain reward $ R_{t+1} \in \mathcal{R} $. 
+			 
+			\begin{center}
+			\includegraphics[width=6cm]{../img/env.png}
+			\captionof{figure}{Actor-critic relation}
+			\label{plot:env}
+			\end{center}
+
+			
+
+			
+			In a Markov decision process shown in Figure \ref{plot:env}, a game agent interacts with an environment to achieve a certain goal. The interaction happens at every discrete time $ t = 1, 2, 3, ... $. The agent observes certain state of the environment $ S_t \in \mathcal{S} $, selects some action $ A_t \in \mathcal{A} $ and then receives certain reward $ R_{t+1} \in \mathcal{R} $. A policy $\pi$ take
 			\end{minipage}
 		};
 		%------------ MDP Header ---------------------
 		\node[fancytitle, right=10pt] at (box.north west) {Problem setup: Markov decision processes};
 		\end{tikzpicture}
 		
-		%------------ Inner Product Spaces ---------------
+		%------------ AC ---------------
 		\begin{tikzpicture}
 		\node [mybox] (box){%
 			\begin{minipage}{0.3\textwidth}
-			1. $ \langle v,v \rangle \geq 0$ Furthermore, $ \langle v,v \rangle = 0 \leftrightarrow v = 0 $ \\
-			2. $\langle v,u \rangle = \langle u,v \rangle $ \\
-			3. $ \langle ku,v \rangle =k\langle u,v \rangle $ \\
-			4. $\langle u+v,w\rangle = \langle u,w \rangle + \langle v,w\rangle $ \\
-			$ ||v|| = \langle v, v \rangle $ \\
-			$ \cos^{-1}(\frac{\langle v,u \rangle}{||v|| ||u||}) $
+
+			\begin{center}
+				\begin{tikzpicture}
+				\draw (2.0, 2) node[align=left] {Value \\  based \\ methods};
+				\draw (4.0, 2) node[align=left] {Actor \\ critic};
+				\draw (6.0, 2) node[align=left] {Policy \\  gradient \\ methods};
+				\draw (3,2) circle (2.0cm) ;
+				\draw (5,2) circle (2.0cm);
+				\end{tikzpicture}
+				\captionof{figure}{Actor-critic relation}
+				\label{plot:ac}
+			\end{center}
+
+			Actor-critic  (AC) methods lay between value-based and policy gradient methods as shown in figure \ref{plot:ac}. They both estimate the policy and state-action functions, whereas value-based methods only estimate state-value functions and have an implicit $\epsilon$-greedy policy, and policy gradient methods do not have value function and only estimates the policy.
 			\end{minipage}
 		};
-		%------------ Inner Product Space Header ---------------------
-		\node[fancytitle, right=10pt] at (box.north west) {Inner Product Spaces};
+		%------------ AC Header ---------------------
+		\node[fancytitle, right=10pt] at (box.north west) {Actor-critic};
 		\end{tikzpicture}
 		
 		%------------ Variation of Parameters Content ---------------------
