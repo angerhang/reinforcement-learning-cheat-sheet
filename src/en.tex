@@ -9,7 +9,8 @@
 \usepackage{tikz}
 \usetikzlibrary{decorations.pathmorphing}
 \usepackage{amsmath,amssymb}
-\usepackage{pgfplots,caption}
+\usepackage{pgfplots}
+\usepackage{caption}
 \usepackage{graphicx}
 
 \usepackage{colortbl}
@@ -24,7 +25,7 @@
 \makeatother
 
 \title{130 Cheat Sheet}
-\usepackage[brazilian]{babel}
+\usepackage{babel}
 \usepackage[utf8]{inputenc}
 
 \advance\topmargin-.8in
@@ -35,7 +36,7 @@
 \parindent0pt
 \parskip2pt
 \newcommand{\hr}{\centerline{\rule{3.5in}{1pt}}}
-%\colorbox[HTML]{e4e4e4}{\makebox[\textwidth-2\fboxsep][l]{texto}
+
 \begin{document}
 	
 	\begin{center}{\huge{\textbf{Reinforcement Learning Cheat Sheet}}}\\
@@ -60,7 +61,8 @@
 				$R_t$ & reward at time t \\
 				$\mathcal{S}$ & set of all non-terminal states \\
 				$ \mathcal{A}$ & set of all actions \\
-				$ \mathcal{R}$ & set of all rewards 
+				$ \mathcal{R}$ & set of all rewards \\
+				$ \doteq $ & definition equal 
 				\end{tabular}
 
 			\end{minipage}
@@ -79,11 +81,12 @@
 			\captionof{figure}{Actor-critic relation}
 			\label{plot:env}
 			\end{center}
-
 			
-
+			In a Markov decision process (MDP) shown in Figure \ref{plot:env}, a game agent interacts with an environment to achieve a certain goal. The interaction happens at every discrete time $ t = 1, 2, 3, ... $. The agent observes certain state of the environment $ S_t \in \mathcal{S} $, selects some action $ A_t \in \mathcal{A} $ and then receives certain reward $ R_{t+1} \in \mathcal{R} $. In a finite MDP, $ p(s', r|s, a) = Pr\{S_t=s', R_t=r | S_{t-1}=s, A_{t-1}=a \} $. The expected reward can be computed by $ r(s, a) = \mathbb{E}[R_t |S_{t-1} = s,A_{t-1}=a] = \sum_{r \in \mathcal{R}}r \sum_{s' \in \mathcal{S}} p(s', r | s, a) $.  \\
 			
-			In a Markov decision process shown in Figure \ref{plot:env}, a game agent interacts with an environment to achieve a certain goal. The interaction happens at every discrete time $ t = 1, 2, 3, ... $. The agent observes certain state of the environment $ S_t \in \mathcal{S} $, selects some action $ A_t \in \mathcal{A} $ and then receives certain reward $ R_{t+1} \in \mathcal{R} $. A policy $\pi$ take
+			The goal of a game is typically to maximize the return. The discounted reward can be framed by:
+			$$ G_t \doteq R_{t+1} + \gamma R_{t+1} + ... + \gamma^{2}R_{t+2} \doteq  \sum_{k=0}^{\infty} \gamma^{k}R_{t+k+1} $$
+			$ \gamma \in [0, 1] $ is the discount factor.
 			\end{minipage}
 		};
 		%------------ MDP Header ---------------------
