@@ -116,24 +116,36 @@
 		\node[fancytitle, right=10pt] at (box.north west) {Actor-critic};
 		\end{tikzpicture}
 		
-		%------------ Variation of Parameters Content ---------------------
+		%------------ DQN Content ---------------------
 		\begin{tikzpicture}
 		\node [mybox] (box){%
 			\begin{minipage}{0.3\textwidth}
-			\begin{align*}
-			F(x) &= y'' + y' \\
-			y_h &= b_1y_1(x) + b_2y_2(x), y_1 y_2 \text{ are L.I.} \\
-			y_p &= u_1(x)y_1(x) + u_2(x)y_2(x) \\
-			u_1 &= \int^t -\frac{y_2F(t)dt}{w[y_1,y_2](t)} \\
-			u_2 &= \int^t \frac{y_1F(t)dt}{w[y_1,y_2](t)} \\    		
-			y &= y_h + y_p
-			\end{align*}
+			DQN sits on the basis of many deep RL techniques. It tries to use a deep neural network to estimate the Q-value instead of using a linear method which has been proven to be more effective. The opitmal Q-value should tell us the max reward one can have by taking certain action: $ Q^*(s, a) = \mathbb{E}_{\pi} [G_t | S_t=s, A_t=a ] $. The Bellman equation describes that $ Q^*(s, a) = \mathbb{E}_{\pi} [R_t + \gamma \max_{a'} Q^*(s', a' | s, a)] $.  \\
+			
+			Given a neural network with parameter $ \theta $, and the target Q-value $ R_t + \gamma \max_{a'} Q^*(s', a' | s, a) $ the update gradient on the loss function can be defined as: 
+			\begin{equation*}
+			\begin{split}
+			\nabla_{\theta^-}L(\theta) =  &  \mathbb{E}[(R_t + \gamma \max_{a'}\\
+			&Q(s', a' | \theta^-) - Q(s, a | \theta)) \nabla Q(s, a | \theta) ] 
+			\end{split}
+			\end{equation*}
+			where $ \theta^-$ is the old network parameter used to estimate the target value. Futhuremore, DQN also incoprates two other techniques to improve the performance, namely experience replay and using a second network  to generate the target Q value. 
 			\end{minipage}
 		};
-		%------------ Variation of Parameters Header ---------------------
-		\node[fancytitle, right=10pt] at (box.north west) {Variation of Parameters};
+		%------------ DQN Header ---------------------
+		\node[fancytitle, right=10pt] at (box.north west) {Deep Q-learning (DQN)};
 		\end{tikzpicture}
 		
+		%------------ DQN II Content ---------------------
+		\begin{tikzpicture}
+		\node [mybox] (box){%
+			\begin{minipage}{0.3\textwidth}
+			Experience replay is deployed to improve data efficiency such that each sample is being used more than one time and also to decouple the correlations between different updates. Using a different network to generate target value means that the target network's parameters are only synced with latested one every once in a while to avoid potentiall divergence of the policy and make training more stable.
+			\end{minipage}
+		};
+		%------------ DQN Header ---------------------
+		\node[fancytitle, right=10pt] at (box.north west) {DQN};
+		\end{tikzpicture}
 		%------------ ODE Content ---------------
 		\begin{tikzpicture}
 		\node [mybox] (box){%
