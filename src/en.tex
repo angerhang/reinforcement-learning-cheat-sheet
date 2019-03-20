@@ -140,7 +140,14 @@
 		\begin{tikzpicture}
 		\node [mybox] (box){%
 			\begin{minipage}{0.3\textwidth}
-			Experience replay is deployed to improve data efficiency such that each sample is being used more than one time and also to decouple the correlations between different updates. Using a different network to generate target value means that the target network's parameters are only synced with latested one every once in a while to avoid potentiall divergence of the policy and make training more stable.
+			The benefits of experience replay:
+			\begin{itemize}
+	        \item More data efficiency as one sample might get used more than once.
+			\item Using consecutive samples might not be efficient as consecutive samples might be highly correlated which means that they contain overlapping information. For example, during gameplay, if an agent is in the left half of the environment, the consecutive plays are more likely in the left half as well which might contain overlapping information.
+			\item To make learning sample distribution independent of model parameters. On-policy learning might bias the probability of sample distribution. For instance, if the model thinks the action to move left is greater, then all the states will have greater probabilities of being reached and vice versa. It is easy to see how an agent can get stuck in a local minimum while oscillating between left and right.
+			\end{itemize}
+			
+			Using two networks for the Q value is to reduce variance. When learning, if $ Q(s_{t}, a) $ increases, often $ Q(s_{t+1}, a), \forall a \in \mathcal{A} $ increases, which could lead to divergence.
 			\end{minipage}
 		};
 		%------------ DQN Header ---------------------
@@ -278,27 +285,6 @@
 		\node[fancytitle, right=10pt] at (box.north west) {Gaussian Integral};
 		\end{tikzpicture}
 		\\
-		\\
-		\\
-		\\
-		
-		%------------ Complex Numbers Content ---------------------
-		\begin{tikzpicture}
-		\node [mybox] (box){%
-			\begin{minipage}{0.3\textwidth}
-			\small{
-				\begin{tabular}{lp{4cm} l}
-				\textit{Systems of equations} & If $\vec{w_1} = \vec{u(t)} + i\vec{v(t)}$ is a solution, $\vec{x_1} = \vec{u(t)}, \vec{x_2} = \vec{v(t)}$ are solutions \\ 
-				& i.e. $\vec{x_h} = c_1 \vec{x_1} + c_2 \vec{x_2}$ \\
-				\hline
-				\textit{Euler's Identity} &$e^{ix} = \cos x + i \sin x$
-				\end{tabular}
-			}
-			\end{minipage}
-		};
-		%------------ Gaussian Integral Header ---------------------
-		\node[fancytitle, right=10pt] at (box.north west) {Complex Numbers};
-		\end{tikzpicture}
 		
 %		%------------ Vector Spaces ---------------
 %		\begin{tikzpicture}
