@@ -65,7 +65,7 @@
 		$ \gamma \in [0, 1] $ is the discount factor.
 		
 		\section*{Policy gradient}
-			\ding{56} Different from value-based methods which estimate the state-action or value-state function, policy gradient tries to find out the best policy to follow. The policy function $ \pi(a | s) \doteq Pr\{A_t = a | S_t = s, \theta_t = \theta \} $ where $ \theta$ is the fuction parameter. The optimizatino of the function parameter can be described as 
+		\ding{56} Different from value-based methods which estimate the state-action or value-state function, policy gradient tries to find out the best policy to follow. The policy function $ \pi(a | s) \doteq Pr\{A_t = a | S_t = s, \theta_t = \theta \} $ where $ \theta$ is the fuction parameter. The optimizatino of the function parameter can be described as 
 		\begin{equation}\label{eq:policyg}
 		\theta_{t+1} = \theta_t + \alpha \nabla_\theta J(\theta) 
 		\end{equation}
@@ -108,7 +108,7 @@
 		\ding{56} Actor-critic  (AC) methods lay between value-based and policy gradient methods as shown in figure \ref{plot:ac}. They both estimate the policy and state-action functions, whereas value-based methods only estimate state-value functions and have an implicit $\epsilon$-greedy policy, and policy gradient methods do not have value function and only estimates the policy.
 		
 		\section*{Deep Q-learning (DQN)}
-					\ding{56} DQN sits on the basis of many deep RL techniques. It tries to use a deep neural network to estimate the Q-value instead of using a linear method which has been proven to be more effective. The opitmal Q-value should tell us the max reward one can have by taking certain action: $ Q^*(s, a) = \mathbb{E}_{\pi} [G_t | S_t=s, A_t=a ] $. The Bellman equation describes that $ Q^*(s, a) = \mathbb{E}_{\pi} [R_t + \gamma \max_{a'} Q^*(s', a' | s, a)] $.  \\
+		\ding{56} DQN sits on the basis of many deep RL techniques. It tries to use a deep neural network to estimate the Q-value instead of using a linear method which has been proven to be more effective. The opitmal Q-value should tell us the max reward one can have by taking certain action: $ Q^*(s, a) = \mathbb{E}_{\pi} [G_t | S_t=s, A_t=a ] $. The Bellman equation describes that $ Q^*(s, a) = \mathbb{E}_{\pi} [R_t + \gamma \max_{a'} Q^*(s', a' | s, a)] $.  \\
 		
 		Given a neural network with parameter $ \theta $, and the target Q-value $ R_t + \gamma \max_{a'} Q^*(s', a' | s, a) $ the update gradient on the loss function can be defined as: 
 		\begin{equation*}
